@@ -34,13 +34,9 @@ Metadata:
   AWS::CloudFormation::Interface:
     ParameterLabels:
       GitHubUser:
-        default: "User"
       GitHubRepo:
-        default: "Repo"
       GitHubBranch:
-        default: "Branch"
       GitHubToken:
-        default: "Personal Access Token"
     ParameterGroups:
       - Label:
           default: GitHub Configuration
