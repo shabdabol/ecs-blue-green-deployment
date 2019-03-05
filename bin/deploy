@@ -9,6 +9,11 @@ echo -n "Enter GitHub User > "
 read GitHubUser
 echo -n "Enter GitHubToken > "
 read GitHubToken
+echo -n "Enter GitHubRepo > "
+read GitHubRepo
+echo -n "Enter GitHubBranch > "
+read GitHubBranch
+
 
 zip deploy/templates.zip ecs-blue-green-deployment.yaml templates/*
 cd scripts && zip scripts.zip * && cd ..
@@ -20,4 +25,4 @@ aws s3 cp ecs-blue-green-deployment.yaml "s3://${bucket}" --acl public-read
 aws s3 cp --recursive templates/ "s3://${bucket}/templates" --acl public-read
 aws s3 cp --recursive scripts/ "s3://${bucket}/scripts" --acl public-read
 aws s3api put-bucket-versioning --bucket "${bucket}" --versioning-configuration Status=Enabled
-aws cloudformation deploy --stack-name $stackname --template-file ecs-blue-green-deployment.yaml --capabilities CAPABILITY_NAMED_IAM --parameter-overrides GitHubUser=$GitHubUser GitHubToken=$GitHubToken TemplateBucket=$bucket
+aws cloudformation deploy --stack-name $stackname --template-file ecs-blue-green-deployment.yaml --capabilities CAPABILITY_NAMED_IAM --parameter-overrides GitHubUser=$GitHubUser GitHubToken=$GitHubToken GitHubRepo=$GitHubRepo GitHubBranch=$GitHubBranch TemplateBucket=$bucket
