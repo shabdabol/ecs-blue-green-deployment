@@ -86,10 +86,14 @@ Resources:
           !Ref BlueGreenFlipLambdaRole
 
   Repository:
+    Properties: 
+      RepositoryName: PortalAPI  
     Type: AWS::ECR::Repository
     DeletionPolicy: Retain
   
   RepositoryFE:
+    Properties: 
+      RepositoryName: PortalFE
     Type: AWS::ECR::Repository
     DeletionPolicy: Retain
 
